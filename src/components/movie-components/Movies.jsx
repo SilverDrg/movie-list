@@ -3,7 +3,6 @@ import { Grid, Box, Button } from '@mui/material';
 import { MovieContext } from '../context-components/MovieContextProvider';
 import Axios from 'axios';
 import Movie from './Movie';
-import Constants from '../../constants.json';
 
 const Movies = () => {
     const [Movies, setMovies] = useState([]);
