@@ -1,4 +1,4 @@
-import { Box, Grid, Card, CardMedia, CardContent, Typography } from '@mui/material';
+import { Grid, Card, CardMedia, CardContent, Typography } from '@mui/material';
 import CircularProgressWithLabel from './CircularProgressWithLabel';
 
 const Movie = (props) => {

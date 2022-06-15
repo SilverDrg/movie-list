@@ -1,4 +1,4 @@
-import { Card, CardContent, CardActions, Typography, Grid, ToggleButtonGroup } from '@mui/material';
+import { Card, CardContent, CardActions, Typography, Grid} from '@mui/material';
 import React, { useState } from 'react';
 import Genre from './Genre';
 
