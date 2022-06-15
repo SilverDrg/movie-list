@@ -1,6 +1,6 @@
 import { Grid, ToggleButton} from '@mui/material'
 import { useState, useContext } from 'react';
-import { FilterContext } from './FilterContextProvider';
+import { FilterContext } from '../context-components/FilterContextProvider';
 
 
 const Genre = (props) => {

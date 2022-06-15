@@ -6,7 +6,7 @@ const Movie = (props) => {
     const imageUrl = "https://www.themoviedb.org/t/p/w220_and_h330_face";
 
     return (
-        <Grid item xs={12} md={6} lg={3} xl={2}>
+        <Grid item xs={12} md={5} lg={3} xl={2.4} >
             <Card elevation={3} sx={{ minWidth: '180px', minHeight: '100%' }}>
                 <CardMedia component='img' sx={{ minWidth: '180px', minHeight: '270px', borderBottom: 1 }} image={imageUrl + movie.poster_path} alt={ movie.title } />
                 <CircularProgressWithLabel value={movie.vote_average * 10}/>
