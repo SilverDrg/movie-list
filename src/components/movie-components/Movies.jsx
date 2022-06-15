@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Grid, Box } from '@mui/material';
+import { Grid, Box, Button } from '@mui/material';
 import { MovieContext } from '../context-components/MovieContextProvider';
 import Axios from 'axios';
 import Movie from './Movie';
@@ -7,6 +7,7 @@ import Constants from '../../constants.json';
 
 const Movies = () => {
     const [Movies, setMovies] = useState([]);
+    const [Page, setPage] = useState(2);
     const movieContext = useContext(MovieContext);
 
     useEffect(() => {
@@ -17,11 +18,31 @@ const Movies = () => {
         });
     }, [movieContext]);
 
+    const LoadMore = () => {
+      let moviesUrl = movieContext.movies;
+      let newUrl = "";
+      moviesUrl.split("&").map((text) => {
+        if(text.includes("page=")) {
+          text = text.slice(0, -1) + Page;
+          setPage(Page+1);
+          console.log("changed page: " + text);
+        }
+        newUrl += text+"&";
+        return text;
+      })
+      newUrl = newUrl.slice(0, -1);
+      console.log(newUrl);
+      Axios.get(newUrl).then((response) => {
+        setMovies([...Movies, ...response.data.results]);
+      });
+    }
+
     return (
       <Box component="main" maxWidth="xs">
         <Grid container spacing={10} justifyContent="center" alignItems="stretch" direction="row">
           {Movies.map((movie) => (<Movie key={movie.id} movie={movie}/>))}
         </Grid>
+        <Button variant="contained" fullWidth="true" onClick={LoadMore} sx={{ mt: 2, mb: 1 }}>Load more</Button>
       </Box>
     )
   }
