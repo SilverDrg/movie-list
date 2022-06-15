@@ -1,23 +1,24 @@
-import logo from './logo.svg';
+import { CssBaseline, Box, Grid } from '@mui/material';
+import { NavBar, Filter, Movies } from './components';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <CssBaseline/>
+      <Box>
+        <NavBar/>
+        <Grid container spacing={2} justifyContent="center" sx={{ mt: 3 }}>
+          <Grid item container xs={10}>
+            <Grid item xs={3} md={3} lg={2} xl={2} sx={{ mt: 1 }}>
+              <Filter />
+            </Grid>
+            <Grid item xs={4} md={6} lg={9} xl={10} sx={{ mt: 1 }}>
+              <Movies />
+            </Grid>
+          </Grid>
+        </Grid>
+      </Box>
     </div>
   );
 }
