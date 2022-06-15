@@ -5,8 +5,6 @@ const Movie = (props) => {
     const movie = props.movie;
     const imageUrl = "https://www.themoviedb.org/t/p/w220_and_h330_face";
 
-    console.log(movie);
-
     return (
         <Grid item xs={12} md={6} lg={3} xl={2}>
             <Card elevation={3} sx={{ minWidth: '180px', minHeight: '100%' }}>
