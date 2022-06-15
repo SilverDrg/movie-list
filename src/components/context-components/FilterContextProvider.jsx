@@ -5,7 +5,7 @@ function filterReducer(state, action) {
     case 'add-filter':
       return {...state, category: [...state.category, action.payload]}
     case 'remove-filter':
-      return {...state, category: state.category.filter(x => x != action.payload)}
+      return {...state, category: state.category.filter(x => x !== action.payload)}
     default:
       throw new Error(`Invalid action: ${action.type}`)
   }
