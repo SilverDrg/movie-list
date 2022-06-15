@@ -1,10 +1,21 @@
 import { Grid, ToggleButton} from '@mui/material'
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { FilterContext } from './FilterContextProvider';
 
 
 const Genre = (props) => {
     const [selected, setSelected] = useState(false);
+    const filterContext = useContext(FilterContext);
     const genre = props.genre;
+
+    const changeFilter = (genreId, isSelected) => {
+        console.log(isSelected);
+        if(isSelected) {
+            filterContext.dispatch({type: 'add-filter', payload: genreId });
+        } else {
+            filterContext.dispatch({type: 'remove-filter', payload: genreId });
+        }
+    }
 
     return(
         <Grid item>
@@ -13,6 +24,7 @@ const Genre = (props) => {
                 selected={selected}
                 onChange={() => {
                     setSelected(!selected);
+                    changeFilter(genre.id, !selected);
                 }} 
                 value={genre.id}
             >
