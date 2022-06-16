@@ -17,7 +17,6 @@ const Filter = () => {
     useEffect(() => {
         Axios.get(genreUrl).then((response) => {
             setGenres(response.data.genres);
-            console.log(response.data.genres);
         });
     }, [genreUrl]);
 
