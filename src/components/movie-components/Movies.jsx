@@ -42,7 +42,6 @@ const Movies = () => {
         console.log(InfiniteLoad);
         if(bottom && InfiniteLoad){
             LoadMore();
-            setInfiniteLoad(true);
         }
       };
 
