@@ -39,7 +39,6 @@ const Filter = () => {
         <CardContent>
             <Typography variant="h6" align="left" sx={{ m: 1 }}>Filters</Typography>
             <Typography variant="subtitle1" align="left" sx={{ m: 1, borderTop: 1, borderColor: 'primary.light' }}>Genres</Typography>
-            <Typography variant="subtitle2" align="left" sx={{ m: 1, borderTop: 1, borderColor: 'primary.light' }}>Filters - {filterContext.filters.category}</Typography>
         </CardContent>
         <CardActions sx={{ m: 1, borderBottom: 1, borderColor: 'primary.light' }}>
             <Grid container spacing={1} direction="row">
