@@ -41,7 +41,7 @@ const Movies = () => {
         <Grid container spacing={10} justifyContent="center" alignItems="stretch" direction="row">
           {Movies.map((movie) => (<Movie key={movie.id} movie={movie}/>))}
         </Grid>
-        <Button variant="contained" fullWidth="true" onClick={LoadMore} sx={{ mt: 2, mb: 1 }}>Load more</Button>
+        { Movies.length < 20 ? "" : <Button variant="contained" fullWidth="true" onClick={LoadMore} sx={{ mt: 2, mb: 1 }}>Load more</Button> }
       </Box>
     )
   }
