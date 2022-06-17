@@ -1,5 +1,6 @@
-import { Card, CardContent, CardActions, Typography, Grid, Button } from '@mui/material';
+import { Card, CardContent, CardActions, Typography, Grid, Button, Box, Collapse, IconButton, styled } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import React, { useState, useEffect, useContext } from 'react';
 import Axios from 'axios';
 import Genre from './Genre';
@@ -7,8 +8,20 @@ import Constants from '../../constants.json';
 import { FilterContext } from '../context-components/FilterContextProvider';
 import { MovieContext } from '../context-components/MovieContextProvider';
 
+const ExpandMore = styled((props) => {
+    const { expand, ...other } = props;
+    return <IconButton {...other} />;
+  })(({ theme, expand }) => ({
+    transform: !expand ? 'rotate(270deg)' : 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  }));
+
 const Filter = () => {
-    const [Genres, setGenres] = useState(null);
+    const [genres, setGenres] = useState(null);
+    const [expanded, setExpanded] = useState(false);
     const filterContext = useContext(FilterContext);
     const movieContext = useContext(MovieContext);
 
@@ -34,21 +47,42 @@ const Filter = () => {
         movieContext.dispatch({type: 'search', payload: moviesUrl });
     }
 
+    const handleExpandClick = () => {
+        setExpanded(!expanded);
+    };
+
     return (
-      <Card elevation={5} sx={{ mr: 2, ml: 1 }}>
-        <CardContent>
-            <Typography variant="h6" align="left" sx={{ m: 1 }}>Filters</Typography>
-            <Typography variant="subtitle1" align="left" sx={{ m: 1, borderTop: 1, borderColor: 'primary.light' }}>Genres</Typography>
-        </CardContent>
-        <CardActions sx={{ m: 1, borderBottom: 1, borderColor: 'primary.light' }}>
-            <Grid container spacing={1} direction="row">
-                {Genres !== null ? Genres.map((genre) => (<Genre key={genre.id} genre={genre} />)) : ""}
-            </Grid>
-        </CardActions>
-        <CardActions>
-            <Button variant="contained" fullWidth="true" startIcon={ <SearchIcon/> } onClick={SearchMovies}>Search</Button>
-        </CardActions>
-      </Card>
+        <Box sx={{ width: '260px' }}>
+            <Card elevation={5}>
+                <CardContent>
+                    <Grid container>
+                        <Typography variant="h6" align="left" display="inline-block">
+                            Filters
+                        </Typography>
+                        <ExpandMore
+                            expand={expanded}
+                            onClick={handleExpandClick}
+                            aria-expanded={expanded}
+                            aria-label="show more"
+                            sx={{ marginLeft: 'auto'}}
+                        >
+                            <ExpandMoreIcon />
+                        </ExpandMore>
+                    </Grid>
+                </CardContent>
+                <Collapse in={expanded} timeout="auto" unmountOnExit>
+                    <CardContent sx={{ pt: 0, pb: 0, borderTop: 1, borderColor: 'primary.light' }}>
+                        <Typography variant="subtitle1" align="left" sx={{ mt: 1 }}>Genres</Typography>
+                    </CardContent>
+                    <CardActions sx={{ m: 1, mt: 0, borderBottom: 1, borderColor: 'primary.light' }}>
+                        <Grid container spacing={1} direction="row">
+                            {genres !== null ? genres.map((genre) => (<Genre key={genre.id} genre={genre} />)) : ""}
+                        </Grid>
+                    </CardActions>
+                </Collapse>
+            </Card>
+            <Button variant="contained" fullWidth="true" startIcon={ <SearchIcon/> } onClick={SearchMovies} sx={{ mt: 1, borderRadius: 3 }}>Search</Button>
+        </Box>
     );
 };
   
