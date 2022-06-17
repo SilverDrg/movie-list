@@ -53,7 +53,7 @@ const Filter = () => {
 
     return (
         <Box sx={{ width: '260px' }}>
-            <Card elevation={5}>
+            <Card elevation={5} sx={{ border: 1, borderColor: '#eee', borderRadius: 2 }}>
                 <CardContent>
                     <Grid container>
                         <Typography variant="h6" align="left" display="inline-block">
@@ -71,17 +71,17 @@ const Filter = () => {
                     </Grid>
                 </CardContent>
                 <Collapse in={expanded} timeout="auto" unmountOnExit>
-                    <CardContent sx={{ pt: 0, pb: 0, borderTop: 1, borderColor: 'primary.light' }}>
+                    <CardContent sx={{ pt: 0, pb: 0, borderTop: 1, borderColor: '#eee' }}>
                         <Typography variant="subtitle1" align="left" sx={{ mt: 1 }}>Genres</Typography>
                     </CardContent>
-                    <CardActions sx={{ m: 1, mt: 0, borderBottom: 1, borderColor: 'primary.light' }}>
+                    <CardActions sx={{ m: 1, mt: 0 }}>
                         <Grid container spacing={1} direction="row">
                             {genres !== null ? genres.map((genre) => (<Genre key={genre.id} genre={genre} />)) : ""}
                         </Grid>
                     </CardActions>
                 </Collapse>
             </Card>
-            <Button variant="contained" fullWidth="true" startIcon={ <SearchIcon/> } onClick={SearchMovies} sx={{ mt: 1, borderRadius: 3 }}>Search</Button>
+            <Button variant="contained" fullWidth={true} startIcon={ <SearchIcon/> } onClick={SearchMovies} sx={{ mt: 1, borderRadius: 3 }}>Search</Button>
         </Box>
     );
 };

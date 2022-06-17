@@ -2,10 +2,10 @@ import { Grid, ToggleButton, styled} from '@mui/material'
 import { useState, useContext } from 'react';
 import { FilterContext } from '../context-components/FilterContextProvider';
 
-const MuiToggleButton = styled(ToggleButton)(({ selectedColor }) => ({
+const MuiToggleButton = styled(ToggleButton)(({ selectedcolor }) => ({
     "&.Mui-selected, &.Mui-selected:hover": {
       color: "white",
-      backgroundColor: selectedColor
+      backgroundColor: selectedcolor
     }
   }));
 
@@ -16,7 +16,6 @@ const Genre = (props) => {
     const genre = props.genre;
 
     const changeFilter = (genreId, isSelected) => {
-        console.log(isSelected);
         if(isSelected) {
             filterContext.dispatch({type: 'add-filter', payload: genreId });
         } else {
@@ -29,7 +28,7 @@ const Genre = (props) => {
             <MuiToggleButton 
                 color="primary"
                 selected={selected}
-                selectedColor="#1976d2"
+                selectedcolor="#1976d2"
                 onChange={() => {
                     setSelected(!selected);
                     changeFilter(genre.id, !selected);

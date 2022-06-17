@@ -14,7 +14,7 @@ const Movie = (props) => {
 
     return (
         <Grid item xs={6} md={3.8} lg={2.4} xl={2} sx={{ ml: 1 }}>
-            <Card elevation={3} sx={{ minWidth: '180px', minHeight: '100%' }}>
+            <Card elevation={3} sx={{ minWidth: '180px', minHeight: '100%', borderRadius: 2 }}>
                 <CardMedia component='img' sx={{ minWidth: '180px', minHeight: '270px', borderBottom: 1 }} image={imageUrl + movie.poster_path} alt={ movie.title } />
                 <CircularProgressWithLabel value={movie.vote_average * 10}/>
                 <CardContent>

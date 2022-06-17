@@ -23,7 +23,6 @@ const Movies = () => {
       })
       newUrl = newUrl.slice(0, -1);
 
-      console.log(newUrl);
       Axios.get(newUrl).then((response) => {
         setMovies([...Movies, ...response.data.results]);
         setInfiniteLoad(true);
@@ -41,7 +40,6 @@ const Movies = () => {
     useEffect(() => {
       const ScrollLoad = (event) => {
         const bottom = event.target.scrollingElement.clientHeight + event.target.scrollingElement.scrollTop >= event.target.scrollingElement.scrollHeight - 5;
-        console.log(InfiniteLoad);
         if(bottom && InfiniteLoad){
             LoadMore();
         }
@@ -59,7 +57,7 @@ const Movies = () => {
         <Grid container spacing={1} justifyContent="space-between" alignItems="stretch" direction="row">
           {Movies.map((movie) => (<Movie key={movie.id} movie={movie}/>))}
         </Grid>
-        { Movies.length < 20 ? "" : <Button variant="contained" fullWidth="true" onClick={LoadMore} sx={{ mt: 2, mb: 1 }}>Load more</Button> }
+        { Movies.length < 20 ? "" : <Button variant="contained" fullWidth={true} onClick={LoadMore} sx={{ mt: 2, mb: 1 }}>Load more</Button> }
       </Box>
     )
   }
