@@ -27,6 +27,8 @@ const Genre = (props) => {
                     changeFilter(genre.id, !selected);
                 }} 
                 value={genre.id}
+                size='small'
+                sx={{ borderRadius: 3 }}
             >
                 {genre.name}
             </ToggleButton>
