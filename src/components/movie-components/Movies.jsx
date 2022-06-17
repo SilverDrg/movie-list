@@ -28,11 +28,13 @@ const Movies = () => {
         setMovies([...Movies, ...response.data.results]);
         setInfiniteLoad(true);
       });
-    }, [Page, Movies, movieContext.movies]);
+    }, [Page, Movies, movieContext]);
 
     useEffect(() => {
       Axios.get(movieContext.movies).then((response) => {
           setMovies(response.data.results);
+          setInfiniteLoad(false);
+          setPage(2);
       });
     }, [movieContext]);
 
